@@ -1,0 +1,38 @@
+{
+    "name": "pitchart/phunktional",
+    "description": "A funky library for functional programming patterns in PHP",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Julien VITTE",
+            "email": "vitte.julien@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Pitchart\\Phunktional\\": "src/"
+        },
+        "files": [
+            "src/partial.php",
+            "src/phunktional.php",
+            "src/pipeline.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pitchart\\Phunktional\\Tests\\": "tests/"
+        },
+        "files": [
+            "tests/Fixtures/tests_helpers.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
