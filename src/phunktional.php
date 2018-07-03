@@ -40,3 +40,15 @@ function curry(callable $function, ...$arguments)
     return (new Curry($function))(...$arguments);
 }
 
+/**
+ * Transforms a value into a function that always returns the same value
+ *
+ * @param $always
+ *
+ * @return \Closure
+ */
+function always($always) {
+    return function ($value) use ($always) {
+        return $always;
+    };
+}
