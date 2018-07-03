@@ -77,11 +77,18 @@ class PipelineTest extends TestCase
             }
         };
 
+        $staticSquare = new class {
+            public static function square($value) {
+                return $value * $value;
+            }
+        };
+
         return [
             'closure' => [3, square(), 9],
             'php function' => [9, 'sqrt', 3],
             'invokable object' => [3, $invokableSquare, 9],
             'object methode' => [3, [$squareObject, 'square'], 9],
+            'static class methode' => [3, [get_class($staticSquare), 'square'], 9],
         ];
     }
 }
