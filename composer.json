@@ -19,6 +19,7 @@
             "Pitchart\\Phunktional\\": "src/"
         },
         "files": [
+            "src/comparison.php",
             "src/logical.php",
             "src/partial.php",
             "src/phunktional.php",
