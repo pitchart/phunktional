@@ -20,6 +20,7 @@
         },
         "files": [
             "src/comparison.php",
+            "src/conditionals.php",
             "src/logical.php",
             "src/partial.php",
             "src/phunktional.php",
