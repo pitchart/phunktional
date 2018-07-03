@@ -22,6 +22,7 @@
             "src/comparison.php",
             "src/conditionals.php",
             "src/logical.php",
+            "src/math.php",
             "src/partial.php",
             "src/phunktional.php",
             "src/pipeline.php"
