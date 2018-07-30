@@ -4,6 +4,7 @@ namespace Pitchart\Phunktional\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Pitchart\Phunktional\Composition;
+use function Pitchart\Phunktional\compose;
 use Pitchart\Phunktional\Tests\Fixtures as f;
 
 /**
@@ -27,13 +28,15 @@ class CompositionTest extends TestCase
         self::assertEquals(4, $adds_one(3));
     }
 
-    public function test_can_compose_basic_functions() {
+    public function test_can_compose_basic_functions()
+    {
         $adds_one_and_returns_square = new Composition(f\plus_one(), f\square());
 
         self::assertEquals(10, $adds_one_and_returns_square(3));
     }
 
-    public function test_can_compose_itself() {
+    public function test_can_compose_itself()
+    {
         $adds_one_and_two_and_returns_square = new Composition(f\square(), new Composition(f\plus_two(), f\plus_one()));
 
         self::assertEquals(16, $adds_one_and_two_and_returns_square(1));
@@ -46,4 +49,11 @@ class CompositionTest extends TestCase
         self::assertEquals(10, $adds_one_and_returns_square(3));
     }
 
+    public function test_appending_functions_is_equivalent_to_standard_composition()
+    {
+        $classical = new Composition(f\plus_one(), f\square());
+        $appended = (new Composition)->append(f\plus_one())->append(f\square());
+
+        self::assertEquals($classical(3), $appended(3));
+    }
 }
