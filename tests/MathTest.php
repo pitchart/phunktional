@@ -84,19 +84,33 @@ class MathTest extends TestCase
     public function mathBuildersProvider()
     {
         yield from ['addition' => [p\add(3)]];
+        yield from ['addition constant' => [(p\add)(3)]];
         yield from ['subsctraction' => [p\substract(3)]];
-        yield from ['product' => [p\multiply(3)]];
+        yield from ['subsctraction constant' => [(p\substract)(3)]];
+        yield from ['multiplication' => [p\multiply(3)]];
+        yield from ['multiplication constant' => [(p\multiply)(3)]];
         yield from ['division' => [p\divide(3)]];
+        yield from ['division constant' => [(p\divide)(3)]];
         yield from ['incrementation' => [p\inc()]];
+        yield from ['incrementation constant' => [(p\inc)]];
         yield from ['decrementation' => [p\dec()]];
+        yield from ['decrementation constant' => [(p\dec)()]];
         yield from ['modulo' => [p\modulo(3)]];
+        yield from ['modulo constant' => [(p\modulo)(3)]];
         yield from ['modulo remainder' => [p\f_mod(3)]];
+        yield from ['modulo remainder constant' => [(p\f_mod)(3)]];
         yield from ['sum' => [p\sum()]];
+        yield from ['sum constant' => [(p\sum)()]];
         yield from ['product' => [p\product()]];
+        yield from ['product constant' => [(p\product)()]];
         yield from ['average' => [p\average()]];
+        yield from ['average constant' => [(p\average)()]];
         yield from ['median' => [p\median()]];
+        yield from ['median constant' => [(p\median)()]];
         yield from ['max' => [p\max()]];
+        yield from ['max constant' => [(p\max)()]];
         yield from ['min' => [p\min()]];
+        yield from ['min constant' => [(p\min)()]];
     }
 
     public function medianListProvider()

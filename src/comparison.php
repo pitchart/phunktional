@@ -2,6 +2,15 @@
 
 namespace Pitchart\Phunktional;
 
+const equals = '\Pitchart\Phunktional\equals';
+const different = '\Pitchart\Phunktional\different';
+const lt = '\Pitchart\Phunktional\lt';
+const lte = '\Pitchart\Phunktional\lte';
+const gt = '\Pitchart\Phunktional\gt';
+const gte = '\Pitchart\Phunktional\gte';
+const even = '\Pitchart\Phunktional\even';
+const odd = '\Pitchart\Phunktional\odd';
+
 /**
  * @param $value
  *

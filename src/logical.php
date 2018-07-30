@@ -2,6 +2,16 @@
 
 namespace Pitchart\Phunktional;
 
+const T = '\Pitchart\Phunktional\T';
+const F = '\Pitchart\Phunktional\F';
+const not = '\Pitchart\Phunktional\not';
+const same = '\Pitchart\Phunktional\same';
+const _and = '\Pitchart\Phunktional\_and';
+const _or = '\Pitchart\Phunktional\_or';
+const all = '\Pitchart\Phunktional\all';
+const some = '\Pitchart\Phunktional\some';
+const complement = '\Pitchart\Phunktional\complement';
+
 /**
  * @return \Closure
  */

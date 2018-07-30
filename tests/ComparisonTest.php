@@ -25,10 +25,20 @@ class ComparisonTest extends TestCase
     public function comparisonBuildersProvider()
     {
         yield from ['equal' => [p\equals(12)]];
-        yield from ['not' => [p\not()]];
+        yield from ['equal constant' => [(p\equals)(12)]];
+        yield from ['different' => [p\different(12)]];
+        yield from ['different constant' => [(p\different)(12)]];
         yield from ['inferior' => [p\lt(12)]];
+        yield from ['inferior constant' => [(p\lt)(12)]];
         yield from ['inferior or equal' => [p\lte(12)]];
+        yield from ['inferior or equal constant' => [(p\lte)(12)]];
         yield from ['superior' => [p\gt(12)]];
+        yield from ['superior constant' => [(p\gt)(12)]];
         yield from ['superior or equal' => [p\gte(12)]];
+        yield from ['superior or equal constant' => [(p\gte)(12)]];
+        yield from ['even' => [p\even()]];
+        yield from ['even constant' => [(p\even)()]];
+        yield from ['odd' => [p\odd()]];
+        yield from ['odd constant' => [(p\odd)()]];
     }
 }

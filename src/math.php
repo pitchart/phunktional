@@ -2,6 +2,21 @@
 
 namespace Pitchart\Phunktional;
 
+const add = '\Pitchart\Phunktional\add';
+const substract = '\Pitchart\Phunktional\substract';
+const multiply = '\Pitchart\Phunktional\multiply';
+const divide = '\Pitchart\Phunktional\divide';
+const inc = '\Pitchart\Phunktional\inc';
+const dec = '\Pitchart\Phunktional\dec';
+const modulo = '\Pitchart\Phunktional\modulo';
+const f_mod = '\Pitchart\Phunktional\f_mod';
+const sum = '\Pitchart\Phunktional\sum';
+const product = '\Pitchart\Phunktional\product';
+const average = '\Pitchart\Phunktional\average';
+const median = '\Pitchart\Phunktional\median';
+const max = '\Pitchart\Phunktional\max';
+const min = '\Pitchart\Phunktional\min';
+
 /**
  * @param $value
  *

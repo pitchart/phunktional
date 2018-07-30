@@ -93,8 +93,12 @@ class ConditionalsTest extends TestCase
     public function comparisonBuildersProvider()
     {
         yield from ['if then else' => [p\iif(p\gt(12), p\T(), p\F())]];
+        yield from ['if then else constant' => [(p\iif)(p\gt(12), p\T(), p\F())]];
         yield from ['if then' => [p\when(p\gt(12), p\not())]];
+        yield from ['if then constant' => [(p\when)(p\gt(12), p\not())]];
         yield from ['if else' => [p\unless(p\gt(12), p\not())]];
+        yield from ['if else constant' => [(p\unless)(p\gt(12), p\not())]];
         yield from ['switch case' => [p\conds([])]];
+        yield from ['switch case constant' => [(p\conds)([])]];
     }
 }

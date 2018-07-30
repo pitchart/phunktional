@@ -26,13 +26,22 @@ class LogicalTest extends TestCase
     public function logicalBuildersProvider()
     {
         yield from ['true' => [p\T()]];
+        yield from ['true constant' => [(p\T)()]];
         yield from ['false' => [p\F()]];
+        yield from ['false constant' => [(p\F)()]];
         yield from ['not' => [p\not()]];
+        yield from ['not constant' => [(p\not)()]];
         yield from ['same' => [p\same()]];
+        yield from ['same constant' => [(p\same)()]];
         yield from ['and' => [p\_and(true)]];
+        yield from ['and constant' => [(p\_and)(true)]];
         yield from ['or' => [p\_or(false)]];
+        yield from ['or constant' => [(p\_or)(false)]];
         yield from ['all' => [p\all(p\gt(12))]];
+        yield from ['all constant' => [(p\all)(p\gt(12))]];
         yield from ['some' => [p\some(p\gt(12))]];
+        yield from ['some constant' => [(p\some)(p\gt(12))]];
         yield from ['complement' => [p\complement(p\gt(12))]];
+        yield from ['complement constant' => [(p\complement)(p\gt(12))]];
     }
 }

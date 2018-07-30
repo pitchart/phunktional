@@ -4,6 +4,12 @@ namespace Pitchart\Phunktional;
 
 use Pitchart\Phunktional\Conditional\CaseDefault;
 
+const iif = '\Pitchart\Phunktional\iif';
+const when = '\Pitchart\Phunktional\when';
+const unless = '\Pitchart\Phunktional\unless';
+const conds = '\Pitchart\Phunktional\conds';
+const case_default = '\Pitchart\Phunktional\case_default';
+
 /**
  * Functional implementation for the following "if then else" statement :
  *

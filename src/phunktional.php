@@ -2,6 +2,9 @@
 
 namespace Pitchart\Phunktional;
 
+const identity = '\Pitchart\Phunktional\identity';
+const always = '\Pitchart\Phunktional\always';
+
 /**
  * Creates a composition of functions
  *
