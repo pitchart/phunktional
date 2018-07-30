@@ -83,7 +83,7 @@ function unless(callable $condition, callable $else) {
  */
 function conds(array $cases) {
     return function ($value) use ($cases) {
-        $reduced = array_reduce($cases, function ($carry, $case) use ($value) {
+        $reduced = \array_reduce($cases, function ($carry, $case) use ($value) {
             list ($condition, $return) = $case;
 
             if ($carry instanceof Reduced) {

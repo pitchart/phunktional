@@ -24,8 +24,8 @@ function compose(callable ...$callbacks)
  */
 function identity(...$value)
 {
-    if (count($value) === 1) {
-        return array_shift($value);
+    if (\count($value) === 1) {
+        return \array_shift($value);
     }
     return $value;
 }

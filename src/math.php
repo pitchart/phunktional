@@ -96,7 +96,7 @@ function modulo($modulo) {
  */
 function f_mod($divisor) {
     return function ($dividend) use ($divisor) {
-        return fmod($dividend, $divisor);
+        return \fmod($dividend, $divisor);
     };
 }
 
@@ -105,7 +105,7 @@ function f_mod($divisor) {
  */
 function sum() {
     return function (... $values) {
-        return array_sum($values);
+        return \array_sum($values);
     };
 }
 
@@ -114,7 +114,7 @@ function sum() {
  */
 function product() {
     return function (... $values) {
-        return array_product($values);
+        return \array_product($values);
     };
 }
 
@@ -123,7 +123,7 @@ function product() {
  */
 function average() {
     return function(... $numbers) {
-        return count($numbers) > 0 ? sum()(...$numbers) / count($numbers) : 0;
+        return \count($numbers) > 0 ? sum()(...$numbers) / \count($numbers) : 0;
     };
 }
 
@@ -132,12 +132,12 @@ function average() {
  */
 function median() {
     return function (...$values) {
-        $count = count($values);
+        $count = \count($values);
         if ($count == 0) {
             return 0;
         }
-        sort($values);
-        $mid  = (int) floor(($count - 1) / 2);
+        \sort($values);
+        $mid  = (int) \floor(($count - 1) / 2);
         if ($count % 2) {
             return $values[$mid];
         }
@@ -154,9 +154,9 @@ function max($default = null) {
     return function (...$values) use ($default) {
         $list = $values;
         if ($default !== null) {
-            $list = array_merge($values, [$default]);
+            $list = \array_merge($values, [$default]);
         }
-        return max($list);
+        return \max($list);
     };
 }
 
@@ -169,8 +169,9 @@ function min($default = null) {
     return function (...$values) use ($default) {
         $list = $values;
         if ($default !== null) {
-            $list = array_merge($values, [$default]);
+            $list = \array_merge($values, [$default]);
         }
-        return min($list);
+        return \min($list);
     };
 }
+

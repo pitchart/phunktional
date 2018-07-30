@@ -17,12 +17,12 @@ final class Placeholder
     }
     public function shift(array &$args, $position)
     {
-        if (count($args) === 0) {
+        if (\count($args) === 0) {
             throw new ArgumentCountError(
-                sprintf('Cannot resolve parameter placeholder at position %d. Missing function argument.', $position)
+                \sprintf('Cannot resolve parameter placeholder at position %d. Missing function argument.', $position)
             );
         }
-        return array_shift($args);
+        return \array_shift($args);
     }
 
     public static function resolve(array &$stored, array &$invoked)

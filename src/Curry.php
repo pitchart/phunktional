@@ -34,11 +34,11 @@ class Curry
         $function = $this->function;
         return function (...$args) use ($function, $arguments) {
             return (function ($arguments) use ($function) {
-                if (count($arguments) < (new \ReflectionFunction($function))->getNumberOfRequiredParameters()) {
+                if (\count($arguments) < (new \ReflectionFunction($function))->getNumberOfRequiredParameters()) {
                     return new self($function, ...$arguments);
                 }
                 return $function(...$arguments);
-            })(array_merge($arguments, $args));
+            })(\array_merge($arguments, $args));
         };
     }
 

@@ -121,7 +121,7 @@ function drop($size)
  */
 function concat(array $collection, array ...$collections)
 {
-    $collections = count($collections) > 0 ? array_merge([$collection], $collections) : [$collection];
+    $collections = \count($collections) > 0 ? \array_merge([$collection], $collections) : [$collection];
     return function (array $array) use ($collections) {
         return \array_merge($array, ...$collections);
     };
@@ -205,10 +205,10 @@ function reduce(callable $reducer, $into)
  */
 function intersect(array $collection, callable $comparator = null, array ...$collections)
 {
-    $collections = count($collections) > 0 ? array_merge([$collection], $collections) : [$collection];
+    $collections = \count($collections) > 0 ? \array_merge([$collection], $collections) : [$collection];
     if ($comparator !== null) {
         return function (array $array) use ($collections, $comparator) {
-            return \array_values(\array_uintersect($array, ...array_merge($collections, [$comparator])));
+            return \array_values(\array_uintersect($array, ...\array_merge($collections, [$comparator])));
         };
     }
     return function (array $array) use ($collections) {
@@ -229,10 +229,10 @@ function intersect(array $collection, callable $comparator = null, array ...$col
  */
 function diff(array $collection, ?callable $comparator = null, array ...$collections)
 {
-    $collections = count($collections) > 0 ? array_merge([$collection], $collections) : [$collection];
+    $collections = \count($collections) > 0 ? \array_merge([$collection], $collections) : [$collection];
     if ($comparator !== null) {
         return function (array $array) use ($collections, $comparator) {
-            return \array_values(\array_udiff($array, ...array_merge($collections, [$comparator])));
+            return \array_values(\array_udiff($array, ...\array_merge($collections, [$comparator])));
         };
     }
     return function (array $array) use ($collections) {
@@ -252,7 +252,7 @@ function diff(array $collection, ?callable $comparator = null, array ...$collect
  */
 function union(array $collection, array ...$collections)
 {
-    $collections = count($collections) > 0 ? array_merge([$collection], $collections) : [$collection];
+    $collections = \count($collections) > 0 ? \array_merge([$collection], $collections) : [$collection];
     return function (array $array) use ($collections) {
         return distinct()(\array_merge($array, ...$collections));
     };
@@ -304,7 +304,7 @@ function reject(callable $filter)
 function sort(callable $comparator)
 {
     return function (array $array) use ($comparator) {
-        usort($array, $comparator);
+        \usort($array, $comparator);
         return $array;
     };
 }

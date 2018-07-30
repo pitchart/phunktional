@@ -55,7 +55,7 @@ function same() {
  */
 function _and(...$args) {
     return function ($value) use ($args) {
-        return array_reduce($args, function ($carry, $arg) {
+        return \array_reduce($args, function ($carry, $arg) {
             return $carry ? $carry && $arg : $carry;
         }, $value);
     };
@@ -68,7 +68,7 @@ function _and(...$args) {
  */
 function _or(...$args) {
     return function ($value) use ($args) {
-        return array_reduce($args, function ($carry, $arg) {
+        return \array_reduce($args, function ($carry, $arg) {
             return !$carry ? $carry || $arg : $carry;
         }, $value);
     };
@@ -81,7 +81,7 @@ function _or(...$args) {
  */
 function all(callable ...$expressions) {
     return function ($value) use ($expressions) {
-        return array_reduce($expressions, function ($carry, callable $expression) use ($value) {
+        return \array_reduce($expressions, function ($carry, callable $expression) use ($value) {
             return $carry ? $carry && (boolean) $expression($value) : $carry;
         }, true);
     };
@@ -94,7 +94,7 @@ function all(callable ...$expressions) {
  */
 function some(callable ...$expressions) {
     return function ($value) use ($expressions) {
-        return array_reduce($expressions, function ($carry, callable $expression) use ($value) {
+        return \array_reduce($expressions, function ($carry, callable $expression) use ($value) {
             return !$carry ? $carry || (boolean) $expression($value) : $carry;
         }, false);
     };
