@@ -72,5 +72,4 @@ class Pipeline
         }
         return $this->process($value);
     }
-
 }

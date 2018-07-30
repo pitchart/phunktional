@@ -16,7 +16,8 @@ const odd = '\Pitchart\Phunktional\odd';
  *
  * @return \Closure
  */
-function equals($value) {
+function equals($value)
+{
     return function ($compared) use ($value) {
         return $compared === $value;
     };
@@ -27,7 +28,8 @@ function equals($value) {
  *
  * @return \Closure
  */
-function different($value) {
+function different($value)
+{
     return function ($compared) use ($value) {
         return $compared !== $value;
     };
@@ -38,7 +40,8 @@ function different($value) {
  *
  * @return \Closure
  */
-function lt($value) {
+function lt($value)
+{
     return function ($compared) use ($value) {
         return $compared < $value;
     };
@@ -49,7 +52,8 @@ function lt($value) {
  *
  * @return \Closure
  */
-function lte($value) {
+function lte($value)
+{
     return function ($compared) use ($value) {
         return $compared <= $value;
     };
@@ -60,7 +64,8 @@ function lte($value) {
  *
  * @return \Closure
  */
-function gt($value) {
+function gt($value)
+{
     return function ($compared) use ($value) {
         return $compared > $value;
     };
@@ -71,7 +76,8 @@ function gt($value) {
  *
  * @return \Closure
  */
-function gte($value) {
+function gte($value)
+{
     return function ($compared) use ($value) {
         return $compared >= $value;
     };
@@ -80,7 +86,8 @@ function gte($value) {
 /**
  * @return \Closure
  */
-function even() {
+function even()
+{
     return function ($compared) {
         return $compared % 2 == 0;
     };
@@ -89,7 +96,8 @@ function even() {
 /**
  * @return \Closure
  */
-function odd() {
+function odd()
+{
     return function ($compared) {
         return $compared % 2 != 0;
     };

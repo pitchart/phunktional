@@ -3,6 +3,7 @@
     "description": "A funky library for functional programming patterns in PHP",
     "type": "library",
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.12",
         "phpunit/phpunit": "^7.0"
     },
     "license": "MIT",

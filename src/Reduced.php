@@ -2,7 +2,6 @@
 
 namespace Pitchart\Phunktional;
 
-
 class Reduced
 {
     private $value;

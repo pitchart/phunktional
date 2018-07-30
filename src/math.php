@@ -22,7 +22,8 @@ const min = '\Pitchart\Phunktional\min';
  *
  * @return \Closure
  */
-function add($value) {
+function add($value)
+{
     return function ($val) use ($value) {
         return $val + $value;
     };
@@ -33,7 +34,8 @@ function add($value) {
  *
  * @return \Closure
  */
-function substract($value) {
+function substract($value)
+{
     return function ($val) use ($value) {
         return $val - $value;
     };
@@ -44,7 +46,8 @@ function substract($value) {
  *
  * @return \Closure
  */
-function multiply($value) {
+function multiply($value)
+{
     return function ($val) use ($value) {
         return $val * $value;
     };
@@ -55,7 +58,8 @@ function multiply($value) {
  *
  * @return \Closure
  */
-function divide($divider) {
+function divide($divider)
+{
     if ($divider == 0) {
         throw new \InvalidArgumentException('Can not divide by 0');
     }
@@ -67,14 +71,16 @@ function divide($divider) {
 /**
  * @return \Closure
  */
-function inc() {
+function inc()
+{
     return add(1);
 }
 
 /**
  * @return \Closure
  */
-function dec() {
+function dec()
+{
     return substract(1);
 }
 
@@ -83,7 +89,8 @@ function dec() {
  *
  * @return \Closure
  */
-function modulo($modulo) {
+function modulo($modulo)
+{
     return function ($number) use ($modulo) {
         return $number % $modulo;
     };
@@ -94,7 +101,8 @@ function modulo($modulo) {
  *
  * @return \Closure
  */
-function f_mod($divisor) {
+function f_mod($divisor)
+{
     return function ($dividend) use ($divisor) {
         return \fmod($dividend, $divisor);
     };
@@ -103,7 +111,8 @@ function f_mod($divisor) {
 /**
  * @return \Closure
  */
-function sum() {
+function sum()
+{
     return function (... $values) {
         return \array_sum($values);
     };
@@ -112,7 +121,8 @@ function sum() {
 /**
  * @return \Closure
  */
-function product() {
+function product()
+{
     return function (... $values) {
         return \array_product($values);
     };
@@ -121,7 +131,8 @@ function product() {
 /**
  * @return \Closure
  */
-function average() {
+function average()
+{
     return function(... $numbers) {
         return \count($numbers) > 0 ? sum()(...$numbers) / \count($numbers) : 0;
     };
@@ -130,7 +141,8 @@ function average() {
 /**
  * @return \Closure
  */
-function median() {
+function median()
+{
     return function (...$values) {
         $count = \count($values);
         if ($count == 0) {
@@ -150,7 +162,8 @@ function median() {
  *
  * @return \Closure
  */
-function max($default = null) {
+function max($default = null)
+{
     return function (...$values) use ($default) {
         $list = $values;
         if ($default !== null) {
@@ -165,7 +178,8 @@ function max($default = null) {
  *
  * @return \Closure
  */
-function min($default = null) {
+function min($default = null)
+{
     return function (...$values) use ($default) {
         $list = $values;
         if ($default !== null) {

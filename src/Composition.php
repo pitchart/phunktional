@@ -39,7 +39,9 @@ class Composition
     public function __invoke()
     {
         if (empty($this->functions)) {
-            return (function ($value) { return $value; })(\func_get_arg(0));
+            return (function ($value) {
+                return $value;
+            })(\func_get_arg(0));
         }
 
         $functionList = \array_reverse($this->functions);

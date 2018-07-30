@@ -50,7 +50,8 @@ function curry(callable $function, ...$arguments)
  *
  * @return \Closure
  */
-function always($always) {
+function always($always)
+{
     return function ($value) use ($always) {
         return $always;
     };

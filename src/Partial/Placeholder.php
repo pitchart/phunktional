@@ -6,7 +6,9 @@ final class Placeholder
 {
     private static $instance = null;
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     public static function get()
     {
@@ -33,5 +35,4 @@ final class Placeholder
             }
         }
     }
-
 }

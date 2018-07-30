@@ -25,7 +25,8 @@ const case_default = '\Pitchart\Phunktional\case_default';
  *
  * @return \Closure
  */
-function iif(callable $condition, callable $then, callable $else) {
+function iif(callable $condition, callable $then, callable $else)
+{
     return function ($value) use ($condition, $then, $else) {
         return $condition($value) ? $then($value) : $else($value);
     };
@@ -43,7 +44,8 @@ function iif(callable $condition, callable $then, callable $else) {
  *
  * @return \Closure
  */
-function when(callable $condition, callable $then) {
+function when(callable $condition, callable $then)
+{
     return function ($value) use ($condition, $then) {
         return $condition($value) ? $then($value) : $value;
     };
@@ -61,7 +63,8 @@ function when(callable $condition, callable $then) {
  *
  * @return \Closure
  */
-function unless(callable $condition, callable $else) {
+function unless(callable $condition, callable $else)
+{
     return function ($value) use ($condition, $else) {
         return $condition($value) ? $value : $else($value);
     };
@@ -81,7 +84,8 @@ function unless(callable $condition, callable $else) {
  *
  * @return \Closure
  */
-function conds(array $cases) {
+function conds(array $cases)
+{
     return function ($value) use ($cases) {
         $reduced = \array_reduce($cases, function ($carry, $case) use ($value) {
             list ($condition, $return) = $case;
@@ -107,6 +111,7 @@ function conds(array $cases) {
  *
  * @return CaseDefault
  */
-function case_default() {
+function case_default()
+{
     return new CaseDefault();
 }

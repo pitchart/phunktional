@@ -15,7 +15,8 @@ const complement = '\Pitchart\Phunktional\complement';
 /**
  * @return \Closure
  */
-function T() {
+function T()
+{
     return function ($value = null) {
         return true;
     };
@@ -24,7 +25,8 @@ function T() {
 /**
  * @return \Closure
  */
-function F() {
+function F()
+{
     return function ($value = null) {
         return false;
     };
@@ -33,7 +35,8 @@ function F() {
 /**
  * @return \Closure
  */
-function not() {
+function not()
+{
     return function ($x) {
         return !$x;
     };
@@ -42,7 +45,8 @@ function not() {
 /**
  * @return \Closure
  */
-function same() {
+function same()
+{
     return function ($value) {
         return $value;
     };
@@ -53,7 +57,8 @@ function same() {
  *
  * @return \Closure
  */
-function _and(...$args) {
+function _and(...$args)
+{
     return function ($value) use ($args) {
         return \array_reduce($args, function ($carry, $arg) {
             return $carry ? $carry && $arg : $carry;
@@ -66,7 +71,8 @@ function _and(...$args) {
  *
  * @return \Closure
  */
-function _or(...$args) {
+function _or(...$args)
+{
     return function ($value) use ($args) {
         return \array_reduce($args, function ($carry, $arg) {
             return !$carry ? $carry || $arg : $carry;
@@ -79,7 +85,8 @@ function _or(...$args) {
  *
  * @return \Closure
  */
-function all(callable ...$expressions) {
+function all(callable ...$expressions)
+{
     return function ($value) use ($expressions) {
         return \array_reduce($expressions, function ($carry, callable $expression) use ($value) {
             return $carry ? $carry && (boolean) $expression($value) : $carry;
@@ -92,7 +99,8 @@ function all(callable ...$expressions) {
  *
  * @return \Closure
  */
-function some(callable ...$expressions) {
+function some(callable ...$expressions)
+{
     return function ($value) use ($expressions) {
         return \array_reduce($expressions, function ($carry, callable $expression) use ($value) {
             return !$carry ? $carry || (boolean) $expression($value) : $carry;
@@ -105,7 +113,8 @@ function some(callable ...$expressions) {
  *
  * @return \Closure
  */
-function complement(callable $function) {
+function complement(callable $function)
+{
     return function ($value) use ($function) {
         return !$function($value);
     };

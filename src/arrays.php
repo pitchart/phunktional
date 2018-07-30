@@ -36,7 +36,6 @@ function filter(callable $filter)
     };
 }
 
-
 function head()
 {
     return function (array $array) {
@@ -141,7 +140,7 @@ function flatmap(callable $mapping)
     return function (array $array) use ($mapping) {
         return \array_reduce(\array_map($mapping, $array), function (array $carry, $item) {
             return \array_merge($carry, \is_array($item) ? $item : [$item]);
-            }, []);
+        }, []);
     };
 }
 

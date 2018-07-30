@@ -41,5 +41,4 @@ class Curry
             })(\array_merge($arguments, $args));
         };
     }
-
 }

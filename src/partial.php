@@ -20,8 +20,7 @@ function _()
  */
 function partial(callable $function, ...$arguments)
 {
-    return function (...$remaining) use ($function, $arguments)
-    {
+    return function (...$remaining) use ($function, $arguments) {
         Placeholder::resolve($arguments, $remaining);
         return $function(...\array_merge($arguments, $remaining));
     };
@@ -35,8 +34,7 @@ function partial(callable $function, ...$arguments)
  */
 function partial_r(callable $function, ...$arguments)
 {
-    return function (...$remaining) use ($function, $arguments)
-    {
+    return function (...$remaining) use ($function, $arguments) {
         Placeholder::resolve($arguments, $remaining);
         return $function(...\array_merge($remaining, $arguments));
     };
