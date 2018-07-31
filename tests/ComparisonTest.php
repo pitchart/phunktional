@@ -5,6 +5,7 @@ namespace Pitchart\Phunktional\Tests;
 use PHPUnit\Framework\TestCase;
 use Pitchart\Phunktional as p;
 use Pitchart\Phunktional\Tests\Mixins\Comparison as Features;
+use function Pitchart\Transformer\comparator;
 
 class ComparisonTest extends TestCase
 {
@@ -12,6 +13,19 @@ class ComparisonTest extends TestCase
         Features\Inferiority,
         Features\Superiority
     ;
+
+    public function test_creates_comparison_function_from_a_callable()
+    {
+        $comparator = p\comparator(function (int $item) {
+            return $item;
+        });
+
+        $array = [5, 2, 4, 3, 1];
+
+        usort($array, $comparator);
+
+        self::assertEquals([1, 2, 3, 4, 5], $array);
+    }
 
     /**
      * @param $function
@@ -40,5 +54,7 @@ class ComparisonTest extends TestCase
         yield from ['even constant' => [(p\even)()]];
         yield from ['odd' => [p\odd()]];
         yield from ['odd constant' => [(p\odd)()]];
+        yield from ['comparator' => [p\comparator(p\same())]];
+        yield from ['comparator constant' => [(p\comparator)(p\same())]];
     }
 }

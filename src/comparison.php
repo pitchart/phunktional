@@ -10,6 +10,7 @@ const gt = '\Pitchart\Phunktional\gt';
 const gte = '\Pitchart\Phunktional\gte';
 const even = '\Pitchart\Phunktional\even';
 const odd = '\Pitchart\Phunktional\odd';
+const comparator = '\Pitchart\Phunktional\comparator';
 
 /**
  * @param $value
@@ -100,5 +101,26 @@ function odd()
 {
     return function ($compared) {
         return $compared % 2 != 0;
+    };
+}
+
+/**
+ * Creates a comparison function for a callable criterion
+ * The list items are sorted in ascendant order of the $callback function applied to items
+ * The created function can be used with usort(), uasot() and uksort()
+ *
+ * @param callable $callback
+ *
+ * @return \Closure
+ */
+function comparator(callable $callback)
+{
+    return function ($first, $second) use ($callback) {
+        $first = ($callback)($first);
+        $second = ($callback)($second);
+        if ($first == $second)  {
+            return 0;
+        }
+        return $first < $second ? -1 : 1;
     };
 }
