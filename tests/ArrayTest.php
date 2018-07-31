@@ -220,5 +220,9 @@ class ArrayTest extends TestCase
         yield from ['reject constant' => [(p\filter)($filtering)]];
         yield from ['sort' => [p\sort(function (int $a, int $b) { return $a > $b ? 1 : ($b > $a ? -1 : 0); })]];
         yield from ['sort constant' => [(p\sort)(function (int $a, int $b) { return $a > $b ? 1 : ($b > $a ? -1 : 0); })]];
+        yield from ['reverse' => [p\reverse()]];
+        yield from ['reverse constant' => [(p\reverse)()]];
+        yield from ['pad' => [p\pad(10, 0)]];
+        yield from ['pad constant' => [(p\pad)(10, 0)]];
     }
 }

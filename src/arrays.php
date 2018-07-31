@@ -20,6 +20,8 @@ const union = '\Pitchart\Phunktional\union';
 const map = '\Pitchart\Phunktional\map';
 const reject = '\Pitchart\Phunktional\reject';
 const sort = '\Pitchart\Phunktional\sort';
+const reverse = '\Pitchart\Phunktional\reverse';
+const pad = '\Pitchart\Phunktional\pad';
 
 /**
  * Runs a boolean function on each element and only puts those that pass into the output.
@@ -336,5 +338,36 @@ function partition(int $size)
 {
     return function (array $array) use ($size) {
         return \array_chunk($array, $size);
+    };
+}
+
+/**
+ * Reverses a list
+ *
+ * @return \Closure
+ *
+ * @see \array_reverse()
+ */
+function reverse()
+{
+    return function (array $array) {
+        return \array_reverse($array);
+    };
+}
+
+/**
+ * Pad array to the specified length with a value
+ *
+ * @param int $size
+ * @param $value
+ *
+ * @return \Closure
+ *
+ * @see \array_pad()
+ */
+function pad(int $size, $value)
+{
+    return function (array $array) use ($size, $value) {
+        return \array_pad($array, $size, $value);
     };
 }
