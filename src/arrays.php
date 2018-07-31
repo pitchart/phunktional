@@ -4,9 +4,10 @@ namespace Pitchart\Phunktional;
 
 const filter = '\Pitchart\Phunktional\filter';
 const head = '\Pitchart\Phunktional\head';
-const take = '\Pitchart\Phunktional\take';
-const tail = '\Pitchart\Phunktional\tail';
 const slice = '\Pitchart\Phunktional\slice';
+const take = '\Pitchart\Phunktional\take';
+const lasts = '\Pitchart\Phunktional\lasts';
+const tail = '\Pitchart\Phunktional\tail';
 const drop = '\Pitchart\Phunktional\drop';
 const concat = '\Pitchart\Phunktional\concat';
 const flatmap = '\Pitchart\Phunktional\flatmap';
@@ -44,7 +45,24 @@ function head()
 }
 
 /**
- * A form of slice that returns the first n elements
+ * Creates a function that returns a sub-sequence of the list between the given $start and $start + size positions
+ *
+ * @param int $start
+ * @param int $size
+ *
+ * @return \Closure
+ *
+ * @link https://martinfowler.com/articles/collection-pipeline/slice.html
+ */
+function slice(int $start, int $size)
+{
+    return function (array $array) use ($start, $size) {
+        return \array_slice($array, $start, $size);
+    };
+}
+
+/**
+ * A form of slice that returns the firsts n elements
  *
  * @param int $size
  *
@@ -56,6 +74,22 @@ function take(int $size)
 {
     return function (array $array) use ($size) {
         return \array_slice($array, 0, $size);
+    };
+}
+
+/**
+ * A form of slice that returns the firsts n elements
+ *
+ * @param int $size
+ *
+ * @return \Closure
+ *
+ * @see slice()
+ */
+function lasts(int $size)
+{
+    return function (array $array) use ($size) {
+        return \array_slice($array, \count($array) - $size);
     };
 }
 
@@ -72,23 +106,6 @@ function tail()
 {
     return function (array $array) {
         return \array_slice($array, 1);
-    };
-}
-
-/**
- * Creates a function that returns a sub-sequence of the list between the given $start and $start + size positions
- *
- * @param int $start
- * @param int $size
- *
- * @return \Closure
- *
- * @link https://martinfowler.com/articles/collection-pipeline/slice.html
- */
-function slice(int $start, int $size)
-{
-    return function (array $array) use ($start, $size) {
-        return \array_slice($array, $start, $size);
     };
 }
 
@@ -308,3 +325,16 @@ function sort(callable $comparator)
     };
 }
 
+/**
+ * Splits an array into arrays of $size elements
+ *
+ * @param int $size
+ *
+ * @return \Closure
+ */
+function partition(int $size)
+{
+    return function (array $array) use ($size) {
+        return \array_chunk($array, $size);
+    };
+}

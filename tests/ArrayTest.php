@@ -46,6 +46,15 @@ class ArrayTest extends TestCase
         self::assertEquals([1, 3, 5, 9, 6], $firsts($array));
     }
 
+    public function test_supports_taking_the_lasts_elements()
+    {
+        $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        $firsts = p\lasts(5);
+
+        self::assertEquals([2, 3, 5, 6, 2], $firsts($array));
+    }
+
     public function test_supports_tailing()
     {
         $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
@@ -179,12 +188,14 @@ class ArrayTest extends TestCase
         yield from ['filter constant' => [(p\filter)($filtering)]];
         yield from ['head' => [p\head()]];
         yield from ['head constant' => [(p\head)()]];
-        yield from ['take' => [p\take(2)]];
-        yield from ['take constant' => [(p\take)(2)]];
-        yield from ['tail' => [p\tail()]];
-        yield from ['tail constant' => [(p\tail)()]];
         yield from ['slice' => [p\slice(2, 5)]];
         yield from ['slice constant' => [(p\slice)(2, 5)]];
+        yield from ['take' => [p\take(2)]];
+        yield from ['take constant' => [(p\take)(2)]];
+        yield from ['lasts' => [p\lasts(2)]];
+        yield from ['lasts constant' => [(p\lasts)(2)]];
+        yield from ['tail' => [p\tail()]];
+        yield from ['tail constant' => [(p\tail)()]];
         yield from ['drop' => [p\drop(3)]];
         yield from ['drop constant' => [(p\drop)(3)]];
         yield from ['concat' => [p\concat([1, 2, 3])]];
