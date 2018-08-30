@@ -2,15 +2,15 @@
 
 namespace Pitchart\Phunktional;
 
-const equals = '\Pitchart\Phunktional\equals';
-const different = '\Pitchart\Phunktional\different';
-const lt = '\Pitchart\Phunktional\lt';
-const lte = '\Pitchart\Phunktional\lte';
-const gt = '\Pitchart\Phunktional\gt';
-const gte = '\Pitchart\Phunktional\gte';
-const even = '\Pitchart\Phunktional\even';
-const odd = '\Pitchart\Phunktional\odd';
-const comparator = '\Pitchart\Phunktional\comparator';
+const equals = __NAMESPACE__.'\equals';
+const different = __NAMESPACE__.'\different';
+const lt = __NAMESPACE__.'\lt';
+const lte = __NAMESPACE__.'\lte';
+const gt = __NAMESPACE__.'\gt';
+const gte = __NAMESPACE__.'\gte';
+const even = __NAMESPACE__.'\even';
+const odd = __NAMESPACE__.'\odd';
+const comparator = __NAMESPACE__.'\comparator';
 
 /**
  * @param $value

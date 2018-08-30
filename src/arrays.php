@@ -2,26 +2,26 @@
 
 namespace Pitchart\Phunktional;
 
-const filter = '\Pitchart\Phunktional\filter';
-const head = '\Pitchart\Phunktional\head';
-const slice = '\Pitchart\Phunktional\slice';
-const take = '\Pitchart\Phunktional\take';
-const lasts = '\Pitchart\Phunktional\lasts';
-const tail = '\Pitchart\Phunktional\tail';
-const drop = '\Pitchart\Phunktional\drop';
-const concat = '\Pitchart\Phunktional\concat';
-const flatmap = '\Pitchart\Phunktional\flatmap';
-const distinct = '\Pitchart\Phunktional\distinct';
-const flatten = '\Pitchart\Phunktional\flatten';
-const reduce = '\Pitchart\Phunktional\reduce';
-const intersect = '\Pitchart\Phunktional\intersect';
-const diff = '\Pitchart\Phunktional\diff';
-const union = '\Pitchart\Phunktional\union';
-const map = '\Pitchart\Phunktional\map';
-const reject = '\Pitchart\Phunktional\reject';
-const sort = '\Pitchart\Phunktional\sort';
-const reverse = '\Pitchart\Phunktional\reverse';
-const pad = '\Pitchart\Phunktional\pad';
+const filter = __NAMESPACE__.'\filter';
+const head = __NAMESPACE__.'\head';
+const slice = __NAMESPACE__.'\slice';
+const take = __NAMESPACE__.'\take';
+const lasts = __NAMESPACE__.'\lasts';
+const tail = __NAMESPACE__.'\tail';
+const drop = __NAMESPACE__.'\drop';
+const concat = __NAMESPACE__.'\concat';
+const flatmap = __NAMESPACE__.'\flatmap';
+const distinct = __NAMESPACE__.'\distinct';
+const flatten = __NAMESPACE__.'\flatten';
+const reduce = __NAMESPACE__.'\reduce';
+const intersect = __NAMESPACE__.'\intersect';
+const diff = __NAMESPACE__.'\diff';
+const union = __NAMESPACE__.'\union';
+const map = __NAMESPACE__.'\map';
+const reject = __NAMESPACE__.'\reject';
+const sort = __NAMESPACE__.'\sort';
+const reverse = __NAMESPACE__.'\reverse';
+const pad = __NAMESPACE__.'\pad';
 
 /**
  * Runs a boolean function on each element and only puts those that pass into the output.

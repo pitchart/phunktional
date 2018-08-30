@@ -2,20 +2,20 @@
 
 namespace Pitchart\Phunktional;
 
-const add = '\Pitchart\Phunktional\add';
-const substract = '\Pitchart\Phunktional\substract';
-const multiply = '\Pitchart\Phunktional\multiply';
-const divide = '\Pitchart\Phunktional\divide';
-const inc = '\Pitchart\Phunktional\inc';
-const dec = '\Pitchart\Phunktional\dec';
-const modulo = '\Pitchart\Phunktional\modulo';
-const f_mod = '\Pitchart\Phunktional\f_mod';
-const sum = '\Pitchart\Phunktional\sum';
-const product = '\Pitchart\Phunktional\product';
-const average = '\Pitchart\Phunktional\average';
-const median = '\Pitchart\Phunktional\median';
-const max = '\Pitchart\Phunktional\max';
-const min = '\Pitchart\Phunktional\min';
+const add = __NAMESPACE__.'\add';
+const substract = __NAMESPACE__.'\substract';
+const multiply = __NAMESPACE__.'\multiply';
+const divide = __NAMESPACE__.'\divide';
+const inc = __NAMESPACE__.'\inc';
+const dec = __NAMESPACE__.'\dec';
+const modulo = __NAMESPACE__.'\modulo';
+const f_mod = __NAMESPACE__.'\f_mod';
+const sum = __NAMESPACE__.'\sum';
+const product = __NAMESPACE__.'\product';
+const average = __NAMESPACE__.'\average';
+const median = __NAMESPACE__.'\median';
+const max = __NAMESPACE__.'\max';
+const min = __NAMESPACE__.'\min';
 
 /**
  * @param $value

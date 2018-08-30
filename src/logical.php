@@ -2,15 +2,15 @@
 
 namespace Pitchart\Phunktional;
 
-const T = '\Pitchart\Phunktional\T';
-const F = '\Pitchart\Phunktional\F';
-const not = '\Pitchart\Phunktional\not';
-const same = '\Pitchart\Phunktional\same';
-const _and = '\Pitchart\Phunktional\_and';
-const _or = '\Pitchart\Phunktional\_or';
-const all = '\Pitchart\Phunktional\all';
-const some = '\Pitchart\Phunktional\some';
-const complement = '\Pitchart\Phunktional\complement';
+const T = __NAMESPACE__.'\T';
+const F = __NAMESPACE__.'\F';
+const not = __NAMESPACE__.'\not';
+const same = __NAMESPACE__.'\same';
+const _and = __NAMESPACE__.'\_and';
+const _or = __NAMESPACE__.'\_or';
+const all = __NAMESPACE__.'\all';
+const some = __NAMESPACE__.'\some';
+const complement = __NAMESPACE__.'\complement';
 
 /**
  * @return \Closure
