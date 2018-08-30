@@ -75,12 +75,19 @@ function unless(callable $condition, callable $else)
  *
  * @param array $cases an array of 2 elements arrays, whose first element is the condition or a default, and the second a callable to be applied to the value
  *
- * example:
+ * examples:
  * [
  *     [gt(12), add(10)],
  *     [lt(40), add(20)],
  *     [case_default(), add(30)],
  * ]
+ * or
+ * [
+ *     case_of(gt(12), add(10)),
+ *     case_of(lt(40), add(20)),
+ *     case_default_to(add(30)),
+ * ]
+ *
  *
  * @return \Closure
  */
@@ -114,4 +121,35 @@ function conds(array $cases)
 function case_default()
 {
     return new CaseDefault();
+}
+
+/**
+ * @param callable $case
+ * @param callable $instruction
+ * @param bool $break
+ *
+ * @return array
+ */
+function case_of(callable $case, callable $instruction, bool $break = true)
+{
+    return [
+        $case,
+        function ($value) use ($instruction, $break) {
+            return $break ? new Reduced($instruction($value)) : $instruction($value);
+        }
+    ];
+}
+
+/**
+ * @param callable $instruction
+ *
+ * @return array
+ */
+function case_default_to(callable $instruction) {
+    return [
+        case_default(),
+        function ($value) use ($instruction) {
+            return new Reduced($instruction($value));
+        }
+    ];
 }

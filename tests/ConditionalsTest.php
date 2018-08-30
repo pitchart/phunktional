@@ -57,14 +57,25 @@ class ConditionalsTest extends TestCase
         self::assertEquals(52, $case(10));
     }
 
-    public function test_matching_condition_breaks_switch_statement()
+    public function test_matching_condition_doesnt_break_switch_statement()
     {
         $case = p\conds([
             [p\gt(12), p\add(12)],
             [p\gt(5), p\add(5)],
         ]);
 
-        self::assertEquals(54, $case(42));
+        self::assertEquals(59, $case(42));
+    }
+
+    public function test_matching_breaking_condition_breaks_switch_statement()
+    {
+        $case = p\conds([
+            [p\gt(3), p\add(2)],
+            p\case_of(p\gt(12), p\add(12)),
+            [p\gt(5), p\add(5)],
+        ]);
+
+        self::assertEquals(56, $case(42));
     }
 
     public function test_default_breaks_switch_statement()
@@ -75,6 +86,24 @@ class ConditionalsTest extends TestCase
         ]);
 
         self::assertEquals(52, $case(10));
+    }
+
+    public function test_case_default_returns_default_case_condition()
+    {
+        self::assertInstanceOf(p\Conditional\CaseDefault::class, p\case_default());
+    }
+
+    /**
+     * @param $builder
+     *
+     * @dataProvider switchConditionBuildersProvider
+     */
+    public function test_has_valid_swich_condition_builders($builder)
+    {
+        self::assertInternalType('array', $builder);
+        self::assertCount(2, $builder);
+        self::assertInternalType('callable', $builder[0]);
+        self::assertInternalType('callable', $builder[1]);
     }
 
 
@@ -100,5 +129,11 @@ class ConditionalsTest extends TestCase
         yield from ['if else constant' => [(p\unless)(p\gt(12), p\not())]];
         yield from ['switch case' => [p\conds([])]];
         yield from ['switch case constant' => [(p\conds)([])]];
+    }
+
+    public function switchConditionBuildersProvider()
+    {
+        yield from ['case of' => [p\case_of(p\gt(12), p\add(12))]];
+        yield from ['default' => [p\case_default_to(p\add(5))]];
     }
 }
