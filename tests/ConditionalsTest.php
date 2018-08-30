@@ -106,8 +106,6 @@ class ConditionalsTest extends TestCase
         self::assertInternalType('callable', $builder[1]);
     }
 
-
-
     /**
      * @param $function
      * @dataProvider comparisonBuildersProvider
@@ -116,8 +114,6 @@ class ConditionalsTest extends TestCase
     {
         self::assertTrue(is_callable($function));
     }
-
-
 
     public function comparisonBuildersProvider()
     {
@@ -129,11 +125,15 @@ class ConditionalsTest extends TestCase
         yield from ['if else constant' => [(p\unless)(p\gt(12), p\not())]];
         yield from ['switch case' => [p\conds([])]];
         yield from ['switch case constant' => [(p\conds)([])]];
+        yield from ['default' => [p\case_default()]];
+        yield from ['default constant' => [(p\case_default)()]];
     }
 
     public function switchConditionBuildersProvider()
     {
         yield from ['case of' => [p\case_of(p\gt(12), p\add(12))]];
+        yield from ['case of constant' => [(p\case_of)(p\gt(12), p\add(12))]];
         yield from ['default' => [p\case_default_to(p\add(5))]];
+        yield from ['default' => [(p\case_default_to)(p\add(5))]];
     }
 }

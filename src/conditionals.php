@@ -9,6 +9,8 @@ const when = __NAMESPACE__.'\when';
 const unless = __NAMESPACE__.'\unless';
 const conds = __NAMESPACE__.'\conds';
 const case_default = __NAMESPACE__.'\case_default';
+const case_of = __NAMESPACE__.'\case_of';
+const case_default_to = __NAMESPACE__.'\case_default_to';
 
 /**
  * Functional implementation for the following "if then else" statement :
