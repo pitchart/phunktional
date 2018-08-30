@@ -94,10 +94,10 @@ function conds(array $cases)
                 return $carry;
             }
 
-            if ($condition instanceof CaseDefault
+            if ($condition($value) instanceof CaseDefault
                 || $condition($value)
             ) {
-                return new Reduced($return($value));
+                return $return($carry);
             }
 
             return $carry;
