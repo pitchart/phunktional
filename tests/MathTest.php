@@ -3,7 +3,7 @@
 namespace Pitchart\Phunktional\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Pitchart\Phunktional as p;
+use Pitchart\Phunktional\Math as m;
 
 class MathTest extends TestCase
 {
@@ -19,57 +19,57 @@ class MathTest extends TestCase
 
     public function test_can_calculate_additions()
     {
-        self::assertEquals(5, p\add(3)(2));
+        self::assertEquals(5, m\add(3)(2));
     }
 
     public function test_can_calculate_substractions()
     {
-        self::assertEquals(5, p\substract(3)(8));
+        self::assertEquals(5, m\substract(3)(8));
     }
 
     public function test_can_calculate_products()
     {
-        self::assertEquals(6, p\multiply(3)(2));
+        self::assertEquals(6, m\multiply(3)(2));
     }
 
     public function test_can_calculate_divisions()
     {
-        self::assertEquals(5, p\divide(2)(10));
+        self::assertEquals(5, m\divide(2)(10));
     }
 
     public function test_can_compute_modulos()
     {
-        self::assertEquals(2, p\modulo(3)(17));
+        self::assertEquals(2, m\modulo(3)(17));
     }
 
     public function test_supports_sum_computation_for_a_list_of_values()
     {
-        self::assertEquals(12, p\sum()(3, 4, 5));
+        self::assertEquals(12, m\sum()(3, 4, 5));
     }
 
     public function test_supports_sum_computation_for_an_empty_list()
     {
-        self::assertEquals(0, p\sum()());
+        self::assertEquals(0, m\sum()());
     }
 
     public function test_supports_product_computation_for_a_list_of_values()
     {
-        self::assertEquals(60, p\product()(3, 4, 5));
+        self::assertEquals(60, m\product()(3, 4, 5));
     }
 
     public function test_supports_product_computation_for_an_empty_list()
     {
-        self::assertEquals(1, p\product()());
+        self::assertEquals(1, m\product()());
     }
 
     public function test_supports_average_computation()
     {
-        self::assertEquals(4, p\average()(3, 4, 5));
+        self::assertEquals(4, m\average()(3, 4, 5));
     }
 
     public function test_supports_average_computation_for_an_empty_list()
     {
-        self::assertEquals(0, p\average()());
+        self::assertEquals(0, m\average()());
     }
 
     /**
@@ -78,39 +78,39 @@ class MathTest extends TestCase
      */
     public function test_supports_median_computation_for(array $list, $expected)
     {
-        self::assertEquals($expected, p\median()(...$list));
+        self::assertEquals($expected, m\median()(...$list));
     }
 
     public function mathBuildersProvider()
     {
-        yield from ['addition' => [p\add(3)]];
-        yield from ['addition constant' => [(p\add)(3)]];
-        yield from ['subsctraction' => [p\substract(3)]];
-        yield from ['subsctraction constant' => [(p\substract)(3)]];
-        yield from ['multiplication' => [p\multiply(3)]];
-        yield from ['multiplication constant' => [(p\multiply)(3)]];
-        yield from ['division' => [p\divide(3)]];
-        yield from ['division constant' => [(p\divide)(3)]];
-        yield from ['incrementation' => [p\inc()]];
-        yield from ['incrementation constant' => [(p\inc)]];
-        yield from ['decrementation' => [p\dec()]];
-        yield from ['decrementation constant' => [(p\dec)()]];
-        yield from ['modulo' => [p\modulo(3)]];
-        yield from ['modulo constant' => [(p\modulo)(3)]];
-        yield from ['modulo remainder' => [p\f_mod(3)]];
-        yield from ['modulo remainder constant' => [(p\f_mod)(3)]];
-        yield from ['sum' => [p\sum()]];
-        yield from ['sum constant' => [(p\sum)()]];
-        yield from ['product' => [p\product()]];
-        yield from ['product constant' => [(p\product)()]];
-        yield from ['average' => [p\average()]];
-        yield from ['average constant' => [(p\average)()]];
-        yield from ['median' => [p\median()]];
-        yield from ['median constant' => [(p\median)()]];
-        yield from ['max' => [p\max()]];
-        yield from ['max constant' => [(p\max)()]];
-        yield from ['min' => [p\min()]];
-        yield from ['min constant' => [(p\min)()]];
+        yield from ['addition' => [m\add(3)]];
+        yield from ['addition constant' => [(m\add)(3)]];
+        yield from ['subsctraction' => [m\substract(3)]];
+        yield from ['subsctraction constant' => [(m\substract)(3)]];
+        yield from ['multiplication' => [m\multiply(3)]];
+        yield from ['multiplication constant' => [(m\multiply)(3)]];
+        yield from ['division' => [m\divide(3)]];
+        yield from ['division constant' => [(m\divide)(3)]];
+        yield from ['incrementation' => [m\inc()]];
+        yield from ['incrementation constant' => [(m\inc)]];
+        yield from ['decrementation' => [m\dec()]];
+        yield from ['decrementation constant' => [(m\dec)()]];
+        yield from ['modulo' => [m\modulo(3)]];
+        yield from ['modulo constant' => [(m\modulo)(3)]];
+        yield from ['modulo remainder' => [m\f_mod(3)]];
+        yield from ['modulo remainder constant' => [(m\f_mod)(3)]];
+        yield from ['sum' => [m\sum()]];
+        yield from ['sum constant' => [(m\sum)()]];
+        yield from ['product' => [m\product()]];
+        yield from ['product constant' => [(m\product)()]];
+        yield from ['average' => [m\average()]];
+        yield from ['average constant' => [(m\average)()]];
+        yield from ['median' => [m\median()]];
+        yield from ['median constant' => [(m\median)()]];
+        yield from ['max' => [m\max()]];
+        yield from ['max constant' => [(m\max)()]];
+        yield from ['min' => [m\min()]];
+        yield from ['min constant' => [(m\min)()]];
     }
 
     public function medianListProvider()

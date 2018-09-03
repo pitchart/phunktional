@@ -1,8 +1,8 @@
 <?php
 
-namespace Pitchart\Phunktional;
+namespace Pitchart\Phunktional\Conditional;
 
-use Pitchart\Phunktional\Conditional\CaseDefault;
+use Pitchart\Phunktional\Reduced;
 
 const iif = __NAMESPACE__.'\iif';
 const when = __NAMESPACE__.'\when';

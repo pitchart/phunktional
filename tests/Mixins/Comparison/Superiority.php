@@ -2,7 +2,7 @@
 
 namespace Pitchart\Phunktional\Tests\Mixins\Comparison;
 
-use Pitchart\Phunktional as p;
+use Pitchart\Phunktional\Comparison as comp;
 
 trait Superiority
 {
@@ -15,7 +15,7 @@ trait Superiority
      */
     public function test_compares_strict_superiority_for($value, $reference, $expected, $strictExpected)
     {
-        self::assertEquals($strictExpected, p\gt($reference)($value));
+        self::assertEquals($strictExpected, comp\gt($reference)($value));
     }
 
     /**
@@ -27,7 +27,7 @@ trait Superiority
      */
     public function test_compares_superiority_for($value, $reference, $expected, $strictExpected)
     {
-        self::assertEquals($expected, p\gte($reference)($value));
+        self::assertEquals($expected, comp\gte($reference)($value));
     }
 
     public function superiorityProvider()

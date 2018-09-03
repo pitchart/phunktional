@@ -1,6 +1,6 @@
 <?php
 
-namespace Pitchart\Phunktional;
+namespace Pitchart\Phunktional\Logical;
 
 const T = __NAMESPACE__.'\T';
 const F = __NAMESPACE__.'\F';

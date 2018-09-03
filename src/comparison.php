@@ -1,6 +1,6 @@
 <?php
 
-namespace Pitchart\Phunktional;
+namespace Pitchart\Phunktional\Comparison;
 
 const equals = __NAMESPACE__.'\equals';
 const different = __NAMESPACE__.'\different';

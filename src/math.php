@@ -1,6 +1,6 @@
 <?php
 
-namespace Pitchart\Phunktional;
+namespace Pitchart\Phunktional\Math;
 
 const add = __NAMESPACE__.'\add';
 const substract = __NAMESPACE__.'\substract';

@@ -3,6 +3,8 @@
 namespace Pitchart\Phunktional\Tests\Mixins\Logical;
 
 use Pitchart\Phunktional as p;
+use Pitchart\Phunktional\Logical as l;
+
 
 trait Valuables
 {
@@ -12,7 +14,7 @@ trait Valuables
      */
     public function test_T_is_always_true($value)
     {
-        self::assertTrue(p\T()($value));
+        self::assertTrue(l\T()($value));
     }
 
     /**
@@ -21,7 +23,7 @@ trait Valuables
      */
     public function test_F_is_always_false($value)
     {
-        self::assertFalse(p\F()($value));
+        self::assertFalse(l\F()($value));
     }
 
     /**
@@ -30,7 +32,7 @@ trait Valuables
      */
     public function test_same_returns_same_value($value)
     {
-        self::assertEquals($value, p\same()($value));
+        self::assertEquals($value, l\same()($value));
     }
 
     /**
@@ -40,10 +42,10 @@ trait Valuables
     public function test_not_returns_logical_complement_of_a_value($value)
     {
         if ($value) {
-            self::assertFalse(p\not()($value));
+            self::assertFalse(l\not()($value));
         }
         else {
-            self::assertTrue(p\not()($value));
+            self::assertTrue(l\not()($value));
         }
     }
 
@@ -56,7 +58,7 @@ trait Valuables
      */
     public function test_respects_logical_laws_for_conjonction($a, $b, $and, $or)
     {
-        self::assertEquals($and, p\_and($b)($a));
+        self::assertEquals($and, l\_and($b)($a));
     }
 
     /**
@@ -68,7 +70,7 @@ trait Valuables
      */
     public function test_respects_logical_laws_for_disjonction($a, $b, $and, $or)
     {
-        self::assertEquals($or, p\_or($b)($a));
+        self::assertEquals($or, l\_or($b)($a));
     }
 
     /**
@@ -80,8 +82,8 @@ trait Valuables
      */
     public function test_respects_associativity($a, $b, $and, $or)
     {
-        self::assertEquals(p\not()(p\_and($b)($a)), p\_or(p\not()($b))(p\not()($a)));
-        self::assertEquals(p\not()(p\_or($b)($a)), p\_and(p\not()($b))(p\not()($a)));
+        self::assertEquals(l\not()(l\_and($b)($a)), l\_or(l\not()($b))(l\not()($a)));
+        self::assertEquals(l\not()(l\_or($b)($a)), l\_and(l\not()($b))(l\not()($a)));
     }
 
     /**
@@ -96,28 +98,28 @@ trait Valuables
 
     public function booleanLawsValuesProvider()
     {
-        foreach ([p\T(), p\F()] as $a) {
-            foreach ([p\T(), p\F()] as $b) {
-                foreach ([p\T(), p\F()] as $c) {
+        foreach ([l\T(), l\F()] as $a) {
+            foreach ([l\T(), l\F()] as $b) {
+                foreach ([l\T(), l\F()] as $c) {
                     list($x, $y, $z) = [$a(), $b(), $c()];
-                    yield from [sprintf('Associativity of OR with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [p\_or(p\_or($z)($y))($x), p\_or(p\_or($x)($y))($z)]];
-                    yield from [sprintf('Associativity of AND with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [p\_and(p\_and($z)($y))($x), p\_and(p\_and($x)($y))($z)]];
-                    yield from [sprintf('Distributivity of AND over OR with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [p\_and(p\_or($z)($y))($x), p\_or(p\_and($x)($y))(p\_and($x)($z))]];
-                    yield from [sprintf('Distributivity of OR over AND with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [p\_or(p\_and($z)($y))($x), p\_and(p\_or($x)($y))(p\_or($x)($z))]];
+                    yield from [sprintf('Associativity of OR with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [l\_or(l\_or($z)($y))($x), l\_or(l\_or($x)($y))($z)]];
+                    yield from [sprintf('Associativity of AND with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [l\_and(l\_and($z)($y))($x), l\_and(l\_and($x)($y))($z)]];
+                    yield from [sprintf('Distributivity of AND over OR with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [l\_and(l\_or($z)($y))($x), l\_or(l\_and($x)($y))(l\_and($x)($z))]];
+                    yield from [sprintf('Distributivity of OR over AND with %s %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false', $z ? 'true' : 'false') => [l\_or(l\_and($z)($y))($x), l\_and(l\_or($x)($y))(l\_or($x)($z))]];
                 }
                 list($x, $y) = [$a(), $b()];
-                yield from [sprintf('Commutativity of OR with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [p\_or($y)($x), p\_or($x)($y)]];
-                yield from [sprintf('Commutativity of AND with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [p\_and($y)($x), p\_and($x)($y)]];
-                yield from [sprintf('Absorption 1 with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [p\_and(p\_or($y)($x))($x), $x]];
-                yield from [sprintf('Absorption 2 with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [p\_or(p\_and($y)($x))($x), $x]];
+                yield from [sprintf('Commutativity of OR with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [l\_or($y)($x), l\_or($x)($y)]];
+                yield from [sprintf('Commutativity of AND with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [l\_and($y)($x), l\_and($x)($y)]];
+                yield from [sprintf('Absorption 1 with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [l\_and(l\_or($y)($x))($x), $x]];
+                yield from [sprintf('Absorption 2 with %s %s', $x ? 'true' : 'false', $y ? 'true' : 'false') => [l\_or(l\_and($y)($x))($x), $x]];
             }
             $x = $a();
-            yield from [sprintf('Identity for OR with %s', $x ? 'true' : 'false') => [p\_or(false)($x), $x]];
-            yield from [sprintf('Identity for AND with %s', $x ? 'true' : 'false') => [p\_and(true)($x), $x]];
-            yield from [sprintf('Annihilator for OR with %s', $x ? 'true' : 'false') => [p\_or(true)($x), true]];
-            yield from [sprintf('Annihilator for AND with %s', $x ? 'true' : 'false') => [p\_and(false)($x), false]];
-            yield from [sprintf('Idempotence of OR with %s', $x ? 'true' : 'false') => [p\_or($x)($x), $x]];
-            yield from [sprintf('Idempotence of AND with %s', $x ? 'true' : 'false') => [p\_and($x)($x), $x]];
+            yield from [sprintf('Identity for OR with %s', $x ? 'true' : 'false') => [l\_or(false)($x), $x]];
+            yield from [sprintf('Identity for AND with %s', $x ? 'true' : 'false') => [l\_and(true)($x), $x]];
+            yield from [sprintf('Annihilator for OR with %s', $x ? 'true' : 'false') => [l\_or(true)($x), true]];
+            yield from [sprintf('Annihilator for AND with %s', $x ? 'true' : 'false') => [l\_and(false)($x), false]];
+            yield from [sprintf('Idempotence of OR with %s', $x ? 'true' : 'false') => [l\_or($x)($x), $x]];
+            yield from [sprintf('Idempotence of AND with %s', $x ? 'true' : 'false') => [l\_and($x)($x), $x]];
         }
     }
 

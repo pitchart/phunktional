@@ -1,6 +1,6 @@
 <?php
 
-namespace Pitchart\Phunktional;
+namespace Pitchart\Phunktional\Arrays;
 
 const filter = __NAMESPACE__.'\filter';
 const head = __NAMESPACE__.'\head';

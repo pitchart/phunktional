@@ -2,7 +2,7 @@
 
 namespace Pitchart\Phunktional\Tests\Mixins\Comparison;
 
-use Pitchart\Phunktional as p;
+use Pitchart\Phunktional\Comparison as comp;
 
 trait Inferiority
 {
@@ -15,7 +15,7 @@ trait Inferiority
      */
     public function test_compares_strict_inferiority_for($value, $reference, $expected, $strictExpected)
     {
-        self::assertEquals($strictExpected, p\lt($reference)($value));
+        self::assertEquals($strictExpected, comp\lt($reference)($value));
     }
 
     /**
@@ -27,7 +27,7 @@ trait Inferiority
      */
     public function test_compares_inferiority_for($value, $reference, $expected, $strictExpected)
     {
-        self::assertEquals($expected, p\lte($reference)($value));
+        self::assertEquals($expected, comp\lte($reference)($value));
     }
 
     public function inferiorityProvider()
