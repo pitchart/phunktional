@@ -14,7 +14,10 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "ext-intl": "*",
+        "symfony/polyfill-mbstring": "^1.8"
+    },
     "autoload": {
         "psr-4": {
             "Pitchart\\Phunktional\\": "src/"
@@ -27,7 +30,8 @@
             "src/math.php",
             "src/partial.php",
             "src/phunktional.php",
-            "src/pipeline.php"
+            "src/pipeline.php",
+            "src/strings.php"
         ]
     },
     "autoload-dev": {
