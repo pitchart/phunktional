@@ -15,6 +15,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
+        "php": ">=7.1",
         "ext-intl": "*",
         "symfony/polyfill-mbstring": "^1.8"
     },
