@@ -6,8 +6,6 @@ php:
 
 before_script:
   - composer install
-  - php -r "copy('http://get.sensiolabs.org/security-checker.phar', 'security-checker.phar');"
 
 script:
-  - php security-checker.phar security:check
   - php vendor/bin/phpunit --coverage-text tests/
