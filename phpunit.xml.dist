@@ -9,6 +9,9 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
+    <php>
+        <ini name="mbstring.internal_encoding" value="UTF-8"/>
+    </php>
     <testsuites>
         <testsuite name="Test Suite">
             <directory>tests</directory>

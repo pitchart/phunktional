@@ -21,11 +21,6 @@ class StringTest extends TestCase
 
     const EMOJI_CODE = "\u{1F4A9}";
 
-    public function setUp()
-    {
-        ini_set('mbstring.internal_encoding','UTF-8');
-    }
-
     /**
      * @param int $length
      * @param string $string
