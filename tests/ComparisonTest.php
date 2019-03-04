@@ -15,17 +15,64 @@ class ComparisonTest extends TestCase
         Features\Superiority
     ;
 
-    public function test_creates_comparison_function_from_a_callable()
+    public function test_even()
     {
-        $comparator = comp\comparator(function (int $item) {
-            return $item;
-        });
+        self::assertFalse(comp\even()(1));
+        self::assertTrue(comp\even()(2));
+    }
 
-        $array = [5, 2, 4, 3, 1];
+    public function test_odd()
+    {
+        self::assertTrue(comp\odd()(1));
+        self::assertFalse(comp\odd()(2));
+    }
+
+    /**
+     * @param array $array
+     * @param callable $callable
+     * @param array $expected
+     *
+     * @dataProvider comparisonFunctionProvider
+     */
+    public function test_creates_comparison_function_from_callables(array $array, callable $callable, array $expected)
+    {
+        $comparator = comp\comparator($callable);
 
         usort($array, $comparator);
 
-        self::assertEquals([1, 2, 3, 4, 5], $array);
+        self::assertEquals($expected, $array);
+    }
+
+    public function comparisonFunctionProvider()
+    {
+        $closure = function (int $item) {
+            return $item;
+        };
+
+        $invokable = new class {
+            public function __invoke(int $item) {
+                return $item;
+            }
+        };
+        $objectMethod = new class {
+            public function comp(int $item) {
+                return $item;
+            }
+        };
+
+        $static = new class {
+            public static function comp(int $item) {
+                return $item;
+            }
+        };
+
+        return [
+            'closure' =>  [[5, 2, 5, 4, 3, 1], $closure, [1, 2, 3, 4, 5, 5]],
+            'invokable object' => [[5, 2, 5, 4, 3, 1], $invokable, [1, 2, 3, 4, 5, 5]],
+            'object methode' => [[5, 2, 5, 4, 3, 1], [$objectMethod, 'comp'], [1, 2, 3, 4, 5, 5]],
+            'static class methode array' => [[5, 2, 5, 4, 3, 1], [get_class($static), 'comp'], [1, 2, 3, 4, 5, 5]],
+            'static class methode string' => [[5, 2, 5, 4, 3, 1], get_class($static).'::comp', [1, 2, 3, 4, 5, 5]],
+        ];
     }
 
     /**
