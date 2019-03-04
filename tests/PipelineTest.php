@@ -50,6 +50,26 @@ class PipelineTest extends TestCase
         self::assertEquals(18, $result);
     }
 
+    public function test_permits_to_pipe_functions_and_apply_on_a_value()
+    {
+        $result = pipe()
+            ->bind(square())
+            ->bind(plus_two())
+            (4)
+        ;
+        self::assertEquals(18, $result);
+    }
+
+    public function test_invoking_object_returns_value()
+    {
+        $result = pipe(4)
+            ->bind(square())
+            ->bind(plus_two())
+            ()
+        ;
+        self::assertEquals(18, $result);
+    }
+
     /**
      * @param $value
      * @param $callable
