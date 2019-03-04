@@ -11,7 +11,11 @@ use Pitchart\Phunktional\String as s;
 class StringTest extends TestCase
 {
     use p\Tests\Mixins\String\CaseConvertion,
+        p\Tests\Mixins\String\Concatenation,
+        p\Tests\Mixins\String\Extraction,
         p\Tests\Mixins\String\Pad,
+        p\Tests\Mixins\String\Positioning,
+        p\Tests\Mixins\String\Replacement,
         p\Tests\Mixins\String\Split,
         p\Tests\Mixins\String\Trim,
         p\Tests\Mixins\String\Verify
@@ -147,6 +151,8 @@ class StringTest extends TestCase
         yield from ['pad_both constant' => [(s\pad_both)(3)]];
         yield from ['wrap' => [s\wrap('test')]];
         yield from ['wrap constant' => [(s\wrap)('test')]];
+        yield from ['concat' => [s\concat('test')]];
+        yield from ['concat constant' => [(s\concat)('test')]];
         yield from ['ensure_left' => [s\ensure_left('test')]];
         yield from ['ensure_left constant' => [(s\ensure_left)('test')]];
         yield from ['ensure_right' => [s\ensure_right('test')]];
