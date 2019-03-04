@@ -2,6 +2,8 @@
 
 namespace Pitchart\Phunktional\Arrays;
 
+use Pitchart\Phunktional\Reduced;
+
 const filter = __NAMESPACE__.'\filter';
 const head = __NAMESPACE__.'\head';
 const slice = __NAMESPACE__.'\slice';
@@ -39,6 +41,9 @@ function filter(callable $filter)
     };
 }
 
+/**
+ * @return \Closure(array $array): mixed
+ */
 function head()
 {
     return function (array $array) {
@@ -80,6 +85,47 @@ function take(int $size)
 }
 
 /**
+ * @param int $frequency
+ *
+ * @return \Closure
+ */
+function take_nth(int $frequency, $modulo = 0)
+{
+    return function (array $array) use ($frequency, $modulo) {
+        $result = [];
+        foreach (array_values($array) as $index => $element) {
+            if (($index+1) % $frequency === $modulo) {
+                $result[] = $element;
+            }
+        }
+        return $result;
+    };
+}
+
+/**
+ * @param callable $callback
+ *
+ * @return \Closure
+ */
+function take_while(callable $callback)
+{
+    return function (array $array) use ($callback) {
+        $reduced =  \array_reduce($array, function ($carry, $item) use ($callback) {
+            if ($carry instanceof Reduced) {
+                return $carry;
+            }
+            if (!$callback($item)) {
+                return new Reduced($carry);
+            }
+            $carry[] = $item;
+            return $carry;
+        }, []);
+
+        return $reduced instanceof Reduced ? $reduced->value() : $reduced;
+    };
+}
+
+/**
  * A form of slice that returns the firsts n elements
  *
  * @param int $size
@@ -92,6 +138,17 @@ function lasts(int $size)
 {
     return function (array $array) use ($size) {
         return \array_slice($array, \count($array) - $size);
+    };
+}
+
+/**
+ * @return \Closure
+ */
+function pop()
+{
+    return function (array $array) {
+        \array_pop($array);
+        return $array;
     };
 }
 
@@ -124,6 +181,29 @@ function drop($size)
 {
     return function (array $array) use ($size) {
         return \array_slice($array, $size);
+    };
+}
+
+/**
+ * @param callable $droping
+ *
+ * @return \Closure(array $array): array
+ */
+function drop_while(callable $droping)
+{
+    return function (array $array) use ($droping) {
+        return \array_reduce(
+            $array, function (array $carry, $item) use ($droping) {
+                if (empty($carry)) {
+                    if (!$droping($item)) {
+                        $carry[] = $item;
+                    }
+                }
+                else {
+                    $carry[] = $item;
+                }
+                return $carry;
+        }, []);
     };
 }
 
@@ -369,5 +449,24 @@ function pad(int $size, $value)
 {
     return function (array $array) use ($size, $value) {
         return \array_pad($array, $size, $value);
+    };
+}
+
+/**
+ * @param callable $callback
+ *
+ * @return \Closure
+ */
+function group_by(callable $callback)
+{
+    return function (array $array) use ($callback) {
+        return \array_reduce($array, function (array $carry, $item) use ($callback) {
+            $groupKey = $callback($item);
+            if (!isset($carry[$groupKey])) {
+                $carry[$groupKey] = [];
+            }
+            $carry[$groupKey][] = $item;
+            return $carry;
+        }, []);
     };
 }

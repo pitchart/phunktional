@@ -6,6 +6,7 @@ namespace Pitchart\Phunktional\Tests;
 use PHPUnit\Framework\TestCase;
 use Pitchart\Phunktional as p;
 use Pitchart\Phunktional\Arrays as a;
+use Pitchart\Phunktional\Comparison as comp;
 
 class ArrayTest extends TestCase
 {
@@ -47,13 +48,51 @@ class ArrayTest extends TestCase
         self::assertEquals([1, 3, 5, 9, 6], $firsts($array));
     }
 
+    public function test_supports_taking_the_firsts_elements_while_a_callback_is_true()
+    {
+        $array = [1, 2, 3, 4 ,5 , 6];
+
+        $firsts = a\take_while(comp\lt(4));
+
+        self::assertEquals([1, 2, 3], $firsts($array));
+    }
+
+    public function test_supports_taking_the_nth_elements()
+    {
+        $array = [1, 2, 3, 4 ,5 , 6, 7, 8, 9];
+
+        $nth = a\take_nth(3);
+
+        self::assertEquals([3, 6, 9], $nth($array));
+
+        $nth = a\take_nth(2);
+
+        self::assertEquals([2, 4, 6, 8], $nth($array));
+
+        $nth = a\take_nth(2, 1);
+
+        self::assertEquals([1, 3, 5, 7, 9], $nth($array));
+    }
+
     public function test_supports_taking_the_lasts_elements()
     {
         $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
 
-        $firsts = a\lasts(5);
+        $lasts = a\lasts(5);
 
-        self::assertEquals([2, 3, 5, 6, 2], $firsts($array));
+        self::assertEquals([2, 3, 5, 6, 2], $lasts($array));
+    }
+
+    public function test_supports_removing_last_element()
+    {
+        $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        self::assertEquals([1, 3, 5, 9, 6, 4, 2, 3, 5, 6], a\pop()($array));
+    }
+
+    public function test_heads_first_value()
+    {
+        self::assertEquals(2, a\head()([2, 4, 6, 8]));
     }
 
     public function test_supports_tailing()
@@ -77,6 +116,15 @@ class ArrayTest extends TestCase
         $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
 
         $dropping = a\drop(3);
+
+        self::assertEquals([9, 6, 4, 2, 3, 5, 6, 2], $dropping($array));
+    }
+
+    public function test_supports_dropping_first_elements_with_a_callback()
+    {
+        $array = [1, 2, 3, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        $dropping = a\drop_while(comp\lt(8));
 
         self::assertEquals([9, 6, 4, 2, 3, 5, 6, 2], $dropping($array));
     }
@@ -130,7 +178,21 @@ class ArrayTest extends TestCase
         self::assertEquals([1, 5, 9, 5], a\intersect([1, 7, 9, 5])($array));
     }
 
+    public function test_supports_intersections_with_comparison_function()
+    {
+        $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        self::assertEquals([1, 5, 9, 5], a\intersect([1, 7, 9, 5], comp\comparator(function ($item) { return $item + 1; }))($array));
+    }
+
     public function test_supports_differences()
+    {
+        $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        self::assertEquals([3, 6, 4, 2, 3, 6, 2], a\diff([1, 7, 9, 5], comp\comparator(function ($item) { return $item + 1; }))($array));
+    }
+
+    public function test_supports_differences_with_comparison_function()
     {
         $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
 
@@ -156,6 +218,34 @@ class ArrayTest extends TestCase
         });
 
         self::assertEquals([1, 2, 2, 3, 3, 4, 5, 5, 6, 6, 9], $sorting($array));
+    }
+
+    public function test_supports_partitioning()
+    {
+        $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        self::assertEquals([[1, 3, 5], [9, 6, 4], [2, 3, 5], [6, 2]], a\partition(3)($array));
+    }
+
+    public function test_supports_reversing()
+    {
+        $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        self::assertEquals([2, 6, 5, 3, 2, 4, 6, 9, 5, 3, 1], a\reverse()($array));
+    }
+
+    public function test_supports_padding()
+    {
+        $array = [1, 2, 3];
+
+        self::assertEquals([1, 2, 3, 4, 4, 4, 4, 4, 4, 4], a\pad(10, 4)($array));
+    }
+
+    public function test_supports_grouping()
+    {
+        $array = [1, 3, 5, 9, 6, 4, 2, 3, 5, 6, 2];
+
+        self::assertEquals([[3, 9, 6, 3, 6], [1, 4], [5, 2, 5, 2]], a\group_by(p\Math\modulo(3))($array));
     }
 
     /**
