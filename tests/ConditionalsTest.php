@@ -59,6 +59,13 @@ class ConditionalsTest extends TestCase
         ]);
 
         self::assertEquals(52, $case(10));
+
+        $case = cond\conds([
+            [comp\gt(12), m\add(12)],
+            cond\case_default_to(m\add(42))
+        ]);
+
+        self::assertEquals(52, $case(10));
     }
 
     public function test_matching_condition_doesnt_break_switch_statement()

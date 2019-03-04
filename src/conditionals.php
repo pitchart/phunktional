@@ -25,7 +25,7 @@ const case_default_to = __NAMESPACE__.'\case_default_to';
  * @param callable $then
  * @param callable $else
  *
- * @return \Closure
+ * @return \Closure (mixed $value): mixed
  */
 function iif(callable $condition, callable $then, callable $else)
 {
