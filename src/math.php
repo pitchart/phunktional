@@ -9,7 +9,7 @@ const divide = __NAMESPACE__.'\divide';
 const inc = __NAMESPACE__.'\inc';
 const dec = __NAMESPACE__.'\dec';
 const modulo = __NAMESPACE__.'\modulo';
-const f_mod = __NAMESPACE__.'\f_mod';
+const intdiv = __NAMESPACE__.'\intdiv';
 const sum = __NAMESPACE__.'\sum';
 const product = __NAMESPACE__.'\product';
 const average = __NAMESPACE__.'\average';
@@ -101,10 +101,10 @@ function modulo($modulo)
  *
  * @return \Closure
  */
-function f_mod($divisor)
+function intdiv($divisor)
 {
     return function ($dividend) use ($divisor) {
-        return \fmod($dividend, $divisor);
+        return \intdiv($dividend, $divisor);
     };
 }
 
@@ -133,7 +133,7 @@ function product()
  */
 function average()
 {
-    return function(... $numbers) {
+    return function (... $numbers) {
         return \count($numbers) > 0 ? sum()(...$numbers) / \count($numbers) : 0;
     };
 }

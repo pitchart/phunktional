@@ -37,9 +37,30 @@ class MathTest extends TestCase
         self::assertEquals(5, m\divide(2)(10));
     }
 
+    public function test_divide_by_0_throws_exception()
+    {
+        self::expectException(\InvalidArgumentException::class);
+        m\divide(0)(10);
+    }
+
+    public function test_can_increment()
+    {
+        self::assertEquals(3, m\inc()(2));
+    }
+
+    public function test_can_decrement()
+    {
+        self::assertEquals(2, m\dec()(3));
+    }
+
     public function test_can_compute_modulos()
     {
         self::assertEquals(2, m\modulo(3)(17));
+    }
+
+    public function test_can_compute_int_division()
+    {
+        self::assertEquals(5, m\intdiv(3)(17));
     }
 
     public function test_supports_sum_computation_for_a_list_of_values()
@@ -72,6 +93,16 @@ class MathTest extends TestCase
         self::assertEquals(0, m\average()());
     }
 
+    public function test_can_find_max()
+    {
+        self::assertEquals(10, m\max()(1, 5, 3, 6, 10, 8, 7));
+    }
+
+    public function test_can_find_min()
+    {
+        self::assertEquals(1, m\min()(1, 5, 3, 6, 10, 8, 7));
+    }
+
     /**
      * @param array $list
      * @dataProvider medianListProvider
@@ -97,8 +128,8 @@ class MathTest extends TestCase
         yield from ['decrementation constant' => [(m\dec)()]];
         yield from ['modulo' => [m\modulo(3)]];
         yield from ['modulo constant' => [(m\modulo)(3)]];
-        yield from ['modulo remainder' => [m\f_mod(3)]];
-        yield from ['modulo remainder constant' => [(m\f_mod)(3)]];
+        yield from ['modulo remainder' => [m\intdiv(3)]];
+        yield from ['modulo remainder constant' => [(m\intdiv)(3)]];
         yield from ['sum' => [m\sum()]];
         yield from ['sum constant' => [(m\sum)()]];
         yield from ['product' => [m\product()]];
