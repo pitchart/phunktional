@@ -3,6 +3,7 @@
 namespace Pitchart\Phunktional\String;
 
 use function Pitchart\Phunktional\pipe;
+
 const length = __NAMESPACE__.'\length';
 const to_lower = __NAMESPACE__.'\to_lower';
 const to_upper = __NAMESPACE__.'\to_upper';
@@ -25,6 +26,7 @@ const pad_left = __NAMESPACE__.'\pad_left';
 const pad_right = __NAMESPACE__.'\pad_right';
 const pad_both = __NAMESPACE__.'\pad_both';
 const wrap = __NAMESPACE__.'\wrap';
+const concat = __NAMESPACE__.'\concat';
 const ensure_left = __NAMESPACE__.'\ensure_left';
 const ensure_right = __NAMESPACE__.'\ensure_right';
 const split = __NAMESPACE__.'\split';
@@ -180,7 +182,7 @@ function to_slug($delimiter = '-')
         $return = pipe()
             ->bind(to_ascii())
             ->bind(function (string $string) use ($delimiter) {
-                return \preg_replace("/[^a-zA-Z\d\s-_".preg_quote($delimiter)."]/u", ' ', $string);
+                return \preg_replace("/[^a-zA-Z\d\s-_".preg_quote($delimiter, '/')."]/u", ' ', $string);
             })
             ->bind(trim())
             ->bind(to_lower())
@@ -196,7 +198,7 @@ function to_slug($delimiter = '-')
  *
  * @return \Closure(string $string): string
  */
-function html_encode(int $flags = ENT_COMPAT | ENT_HTML401)
+function html_encode(int $flags = ENT_COMPAT | ENT_HTML5)
 {
     return function ($string) use ($flags) {
         return htmlentities($string, $flags);
@@ -208,7 +210,7 @@ function html_encode(int $flags = ENT_COMPAT | ENT_HTML401)
  *
  * @return \Closure(string $string): string
  */
-function html_decode(int $flags = ENT_COMPAT | ENT_HTML401)
+function html_decode(int $flags = ENT_COMPAT | ENT_HTML5)
 {
     return function ($string) use ($flags) {
         return html_entity_decode($string, $flags);
@@ -292,7 +294,7 @@ function lasts(int $length)
         if ($length < 0) {
             return '';
         }
-        return \mb_substr($string, 0, $length);
+        return \mb_substr($string, \mb_strlen($string) - $length);
     };
 }
 
@@ -335,7 +337,7 @@ function insert(string $chunk, $index)
         $index = (int) $index;
         $length = \mb_strlen($string);
         if ($index > $length) {
-            return $string;
+            return $string.$chunk;
         }
         $start = \mb_substr($string, 0, $index);
         $end = \mb_substr($string, $index, $length);
@@ -453,6 +455,19 @@ function wrap(string $glue)
 {
     return function (string $string) use ($glue) {
         return \implode('', [$glue, $string, $glue]);
+    };
+}
+
+/**
+ * @param string $next
+ * @param \string[] ...$nexts
+ *
+ * @return \Closure
+ */
+function concat(string $glue = '', string $next = '', string ...$nexts)
+{
+    return function (string $string) use ($glue, $next, $nexts) {
+        return \implode($glue, \array_merge([$string, $next], $nexts));
     };
 }
 

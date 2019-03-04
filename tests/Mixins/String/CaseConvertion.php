@@ -144,6 +144,41 @@ trait CaseConvertion
     }
 
     /**
+     * @dataProvider upperCamelizeProvider()
+     */
+    public function testUpperCamelize(string $expected, string $string)
+    {
+        $result = s\to_upper_camel_case()($string);
+
+        self::assertEquals($expected, $result);
+    }
+
+    public function upperCamelizeProvider()
+    {
+        return [
+            ['CamelCase', 'CamelCase'],
+            ['CamelCase', 'Camel-Case'],
+            ['CamelCase', 'camel case'],
+            ['CamelCase', 'camel -case'],
+            ['CamelCase', 'camel - case'],
+            ['CamelCase', 'camel_case'],
+            ['CamelCTest', 'camel c test'],
+            ['StringWith1Number', 'string_with1number'],
+            ['StringWith22Numbers', 'string-with-2-2 numbers'],
+            ['DataRate', 'data_rate'],
+            ['BackgroundColor', 'background-color'],
+            ['YesWeCan', 'yes_we_can'],
+            ['MozSomething', '-moz-something'],
+            ['CarSpeed', '_car_speed_'],
+            ['ServeHTTP', 'ServeHTTP'],
+            ['1Camel2Case', '1camel2case'],
+            ['CamelΣase', 'camel σase'],
+            ['ΣτανιλCase', 'Στανιλ case'],
+            ['ΣamelCase', 'σamel  Case']
+        ];
+    }
+
+    /**
      * @dataProvider underscoredProvider()
      */
     public function test_converts_into_snake_case(string $expected, string $string)
